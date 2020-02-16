@@ -15,18 +15,16 @@ class Ship implements Transporter {
     }
 }
 
-class Logistics {
+abstract class Logistics {
     transporter: Transporter
     constructor(transporter: Transporter) {
         this.transporter = transporter
     }
     planDelivery() {
-
+        console.log('kaka')
     }
     
-    createTransport() {
-        
-    }
+    abstract createTransport(): Transporter
 }
 
 class RoadLogistics extends Logistics { 
@@ -34,8 +32,8 @@ class RoadLogistics extends Logistics {
         const truckTransport = new Truck();
         super(truckTransport)
     }
-    planDelivery() {
-        
+    createTransport(): Truck{
+        return new Truck()
     }
 }
 
@@ -44,7 +42,7 @@ class SeaLogistics extends Logistics {
         const shipTransport = new Ship();
         super(shipTransport)
     }
-    planDelivery() {
-
+    createTransport(): Ship {
+        return new Ship()
     }
 }
